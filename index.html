@@ -122,6 +122,12 @@
       margin-left: 10px;
     }
   </style>
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("U750QJSABRmkhuk1t");
+  })();
+</script>
 </head>
 <body>
   <header>
@@ -137,7 +143,7 @@
     </div>
     <h1 id="title">Receive a Tarot Reading Every Morning ✨</h1>
     <p id="subtitle">Sign up to get a daily tarot card delivered to your inbox—personal, mystical, and aligned with your day.</p>
-    <form action="https://hook.eu2.make.com/j1n2y17jsg9tx9shfh968rvxsqnemjhe" method="POST">
+    <form id="contact-form">
       <input type="email" name="email" placeholder="Your email address" required>
       <button type="submit" id="subscribe-btn">Subscribe</button>
     </form>
@@ -163,20 +169,17 @@
       document.getElementById('subtitle').innerText = translations[lang].subtitle;
     }
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = e.target;
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      emailjs.sendForm("service_0v0p6id", "template_ewgtqxj", this)
+        .then(function() {
+          document.getElementById("contact-form").style.display = "none";
           const lang = document.getElementById('subscribe-btn').innerText === 'Abone Ol' ? 'tr' : 'en';
           document.getElementById('success-message-' + lang).style.display = 'block';
-        }
-      });
+        }, function(error) {
+          alert("Oops! Something went wrong.
+" + JSON.stringify(error));
+        });
     });
   </script>
 </body>

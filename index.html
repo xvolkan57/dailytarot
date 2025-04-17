@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +82,7 @@
       background-position: center;
       border-radius: 12px;
       opacity: 0.3;
-      animation: floatAround 10s linear infinite;
+      animation: floatAround 6s linear infinite;
     }
     .floating-card:nth-child(1) {
       top: 10%;
@@ -146,7 +147,8 @@
       <input type="email" name="email" placeholder="Your email address" required>
       <button type="submit" id="subscribe-btn">Subscribe</button>
     </form>
-    <p id="success-message" style="display:none; color:#e6c77b; margin-top:1rem; font-size:1.1rem;">✨ Thank you for subscribing! Your daily tarot awaits. 🔮</p>
+    <p id="success-message-en" style="display:none; color:#e6c77b; margin-top:1rem; font-size:1.1rem;">✨ Thank you for subscribing! Your daily tarot awaits. 🔮</p>
+    <p id="success-message-tr" style="display:none; color:#e6c77b; margin-top:1rem; font-size:1.1rem;">✨ Abone olduğun için teşekkürler! Günlük tarotun yolda. 🔮</p>
   </header>
   <script>
     const translations = {
@@ -178,7 +180,8 @@
       }).then(response => {
         if (response.ok) {
           form.style.display = 'none';
-          document.getElementById('success-message').style.display = 'block';
+          const lang = document.getElementById('subscribe-btn').innerText === 'Abone Ol' ? 'tr' : 'en';
+          document.getElementById('success-message-' + lang).style.display = 'block';
         }
       });
     });

@@ -168,13 +168,14 @@
   document.getElementById('title').innerText = translations[lang].title;
   document.getElementById('subtitle').innerText = translations[lang].subtitle;
   document.getElementById('lang-field').value = lang;
+  document.getElementById('subscribe-btn').innerText = translations[lang].subscribe;
 }
   document.getElementById("contact-form").addEventListener("submit", function(event) {
   event.preventDefault();
   emailjs.sendForm("service_0v0p6id", "template_ewgtqxj", this)
     .then(function() {
       document.getElementById("contact-form").style.display = "none";
-      const lang = document.getElementById('subscribe-btn').innerText === 'Abone Ol' ? 'tr' : 'en';
+      const lang = document.getElementById('lang-field').value;
       document.getElementById('success-message-' + lang).style.display = 'block';
     }, function(error) {
       alert("Oops! Something went wrong.
@@ -187,4 +188,3 @@
 </script>
 </body>
 </html>
-

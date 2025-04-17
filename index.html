@@ -177,8 +177,7 @@
           const lang = document.getElementById('subscribe-btn').innerText === 'Abone Ol' ? 'tr' : 'en';
           document.getElementById('success-message-' + lang).style.display = 'block';
         }, function(error) {
-          alert("Oops! Something went wrong.
-" + JSON.stringify(error));
+          alert("Oops! Something went wrong.\n" + JSON.stringify(error));
         });
     });
   </script>
